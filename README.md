@@ -1,6 +1,6 @@
 # ProxyTest
 
-JPA Entity Proxy 상태의 연관관 저장시 null 반환 오류
+JPA Entity 저장시 Proxy 상태의 연관관계 Entity의 null 반환 오류
 
 ## 증상
 
