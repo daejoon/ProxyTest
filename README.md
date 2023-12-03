@@ -10,23 +10,23 @@ City를 저장할때 연관관계에 있는 Code의 엔티티를 참조 시키�
 
 * JPA는 엔티티의 Lazy 설정이 되어 있거나 1차 캐쉬(PersistenceContext)에 저장되어 있는 데이터를 다시 조회 하면 HibernateProxy 객체를 리턴하고 실제 DB에서 가져오지 않는다.
 
-* 저장시에 ManyToOne(OneToOne) Primary 조인 관계라면 실제 참조 엔티트 값을 조회한다.
+* 저장시에 연관관계 Primary 조인 관계라면 실제 참조 엔티트 값을 조회한다.
 
-    * SimpleForeignKeyDescriptor.java
-      ```java
-      ...
-      if ( refersToPrimaryKey ) {
-        final LazyInitializer lazyInitializer = HibernateProxy.extractLazyInitializer( targetObject );
-        if ( lazyInitializer != null ) {
-            return lazyInitializer.getIdentifier();
-        }
-      }
-      ...
-      ```
-* 저장시 ManyToOne Primary 조인이 아니라면 값을 그대로 조회한다.
-
-  * ToOneAttributeMapping.java
     ```java
+    /** SimpleForeignKeyDescriptor.java **/
+    ...
+    if ( refersToPrimaryKey ) {
+      final LazyInitializer lazyInitializer = HibernateProxy.extractLazyInitializer( targetObject );
+      if ( lazyInitializer != null ) {
+          return lazyInitializer.getIdentifier();
+      }
+    }
+    ...
+    ```
+* 저장시 연관관계 Primary 조인이 아니라면 값을 그대로 조회한다.
+
+    ```java
+    /** ToOneAttributeMapping.java */
     ...
     private static Object extractAttributePathValue(Object domainValue, EntityMappingType entityType, String attributePath) {
         if ( ! attributePath.contains( "." ) ) {
