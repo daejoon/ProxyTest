@@ -1,0 +1,26 @@
+### logging
+logging.level:
+  org.springframework.web.servlet.DispatcherServlet: DEBUG
+  org.springframework.data.elasticsearch: TRACE
+  org.elasticsearch.client.RestClient: TRACE
+  com.zaxxer.hikari.HikariConfig: DEBUG
+  com.zaxxer.hikari: TRACE
+  org.hibernate.SQL: DEBUG
+  org.hibernate.orm.jdbc.bind: TRACE
+
+### JPA
+spring.jpa:
+  properties:
+    hibernate:
+      default_batch_fetch_size: 30
+      dialect: org.hibernate.dialect.H2Dialect
+      show_sql: false
+      format_sql: true
+      use_sql_comments: true
+      highlight_sql: true
+  hibernate:
+    # https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto.data-access.configure-hibernate-naming-strategy
+    naming:
+      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    ddl-auto: create-drop
+  generate-ddl: true
