@@ -50,3 +50,8 @@ City를 저장할때 연관관계에 있는 Code의 엔티티를 참조 시키�
 * 방법 2 추천
     * 개발자가 개발하면서 연관 관계를 정확히 알아야 하며 휴먼에러가 발생하기 쉽다. 차라리 그럴바에는 실제 필드 값을 가지고 있게 수정하는게 관리상 용이하며 unrpoxy를 해야 하는 코드도 없어서 흐름도
       자연스럽다.
+
+## 추가 사항
+
+* Hibernate 6.5.3 에서 해결되어서 비식별 관계일때도 저장된다.
+  * [Hibernate fails to persist an entity when a natural id association is a proxy](https://hibernate.atlassian.net/browse/HHH-18147) 
