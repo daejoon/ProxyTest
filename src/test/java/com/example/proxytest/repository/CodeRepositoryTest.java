@@ -49,7 +49,7 @@ class CodeRepositoryTest {
     }
 
     @Test
-    @DisplayName("연관관계가 PrimaryKey가 아니라면 Proxy 참조 저장할때 null을 반환")
+    @DisplayName("연관관계가 PrimaryKey가 아니라면 Proxy 참조 저장할때 null을 반환 (하이버네티으 6.5.3에서 해결)")
     void 연관관계가_primary_key가_아니라면_proxy_참조_저장할때_null을_반환() {
 
         // given
@@ -73,9 +73,7 @@ class CodeRepositoryTest {
                 .code(findCode.get().getParentCode().getParentCode())
                 .build();
 
-        assertThatExceptionOfType(ConstraintViolationException.class).isThrownBy(() -> {
-            em.persist(city);
-        });
+        em.persist(city);
     }
 
     @Test
